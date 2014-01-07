@@ -1,11 +1,9 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "在创建Vagrant box时遇到的一些问题"
 date:   2014-01-07 22:27:46
 categories: jekyll update
 ---
-
-## 在创建Vagrant box时遇到的一些问题
 
 ### 更改系统默认编辑器
 
