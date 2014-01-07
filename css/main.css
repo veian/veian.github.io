@@ -128,10 +128,19 @@ a:visited { color: #a0a; }
 /*****************************************************************************/
 
 /* standard */
+pre, code{
+  font-family:Consolas, "Liberation Mono", Courier, monospace;
+}
 .post pre {
+  margin: 15px 0;
+  background-color: #f8f8f8;
   border: 1px solid #ddd;
-  background-color: #eef;
-  padding: 0 .4em;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+  word-wrap: normal;
 }
 
 .post ul, .post ol {
@@ -139,12 +148,21 @@ a:visited { color: #a0a; }
 }
 
 .post code {
+  margin: 0 2px;
+  padding: 0px 5px;
   border: 1px solid #ddd;
-  padding: 0 .2em;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+  white-space: nowrap;
 }
 
 .post pre code {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
   border: none;
+  word-wrap: normal;
+  white-space: pre;
 }
 
 /* terminal */
