@@ -14,13 +14,14 @@ html, body { height: 100%; }
 
 body {
   background-color: #FFF;
-  font: 13.34px Helvetica, Arial, sans-serif;
+  font: 14px Helvetica, Arial, sans-serif;
   font-size: small;
   text-align: center;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-size: 100%; }
+  font-size: 100%;
+  line-height:1.5;}
 
 h1 { margin-bottom: 1em; }
 p { margin: 1em 0; }
@@ -29,6 +30,35 @@ a         { color: #00a; }
 a:hover   { color: #000; }
 a:visited { color: #a0a; }
 
+/*****************************************************************************/
+/*
+/* title
+/*
+/*****************************************************************************/
+h1{
+	margin:16px 0;
+	font-size:20px;
+}
+h2{
+	margin:12px 0;
+	font-size:18px;
+}
+h3{
+	margin:6px 0;
+	font-size:16px;
+}
+h4{
+	margin:4px 0;
+	font-size:14px;
+	font-weight:normal;
+}
+h5{
+	margin:2px 0;
+	font-size:12px;
+}
+h6{
+	font-size:10px;
+}
 /*****************************************************************************/
 /*
 /* Home
