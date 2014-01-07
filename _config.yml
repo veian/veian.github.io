@@ -1,3 +1,4 @@
 name: Veian's BLOG
 markdown: redcarpet
+permalink: /:categories/:year/:month/:day/:title
 pygments: true
