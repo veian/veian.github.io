@@ -163,20 +163,19 @@ Main account Password: [自定义]，e.g. vagrant
 
 	i. 先安装`dkms`和`reboot`
 
-		```
-		sudo apt-get -y install linux-headers-$(uname -r) build-essential dkms
-		sudo reboot
-
-		```
+	```
+	sudo apt-get -y install linux-headers-$(uname -r) build-essential dkms
+	sudo reboot
+	```
 
 	i. 重启之后，点击Virtual Box [设备]上的[安装增强功能]，接下来需要mount virtual CD
 
-		```
-		sudo apt-get -y install linux-headers-$(uname -r) build-essential
-		mkdir /media/cdrom
-		mount /dev/cdrom /media/cdrom
-		sudo sh /media/cdrom/VBoxLinuxAdditions.run
-		```
+	```
+	sudo apt-get -y install linux-headers-$(uname -r) build-essential
+	mkdir /media/cdrom
+	mount /dev/cdrom /media/cdrom
+	sudo sh /media/cdrom/VBoxLinuxAdditions.run
+	```
 
 10. 清空缓存
 
