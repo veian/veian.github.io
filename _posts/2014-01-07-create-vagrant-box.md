@@ -29,8 +29,8 @@ $ sudo visudo
 ### vim 批量替换
 
 ```
-:s/x/y/g # 当前行，或进入visual 模式之后
-%s/x/y/g # 当前文件
+:s/x/y/g # 当前行，或进入visual 模式之后，搜索x替换成y
+:%s/x/y/g # 当前文件
 :100, 102s/x/y/g # 指定行
 ```
 
