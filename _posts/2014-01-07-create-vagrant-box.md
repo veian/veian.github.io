@@ -225,6 +225,16 @@ $ vagrant init vagrant-precise32
 $ vagrant up
 ```
 
+### 五、常用命令
+
+```
+vagrant halt # 关机
+vagrant destory # 停止当前正在运行的虚拟机并销毁所有创建的资源
+vagrant box remove # 删除相应的box
+vagrant box list # 显示当前已经添加的box列表
+```
+更多：[https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/01.3.md](https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/01.3.md)
+
 ## 遗留的问题
 
 1. 在vagrant up时，系统会停留在输入用户名界面，这时需要vagrant ssh，之后up才会结束
