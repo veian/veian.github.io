@@ -240,3 +240,6 @@ vagrant box list # 显示当前已经添加的box列表
 1. 在vagrant up时，系统会停留在输入用户名界面，这时需要vagrant ssh，之后up才会结束
 2. 制作的box的大小为594.7Mb，太大了，是否有办法弄小一点
 
+## 参考
+[Creating a vagrant base box for ubuntu 12.04 32bit server](https://github.com/fespinoza/checklist_and_guides/wiki/Creating-a-vagrant-base-box-for-ubuntu-12.04-32bit-server)
+
