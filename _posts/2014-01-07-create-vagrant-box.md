@@ -1,35 +1,43 @@
 ---
 layout: post
 title:  "在创建Vagrant box时遇到的一些问题"
-date:   2014-01-07 22:27:46
-description: ""
-categories: jekyll update
-tags: []
+date: 2014-01-07 22:27:46
+description: "在创建Vagrant box时遇到的一些问题"
+categories: tools
+tags: [vagrant]
 ---
 {% include JB/setup %}
 
 ### 设定/改变/启用`root`密码
 
 ```
-sudo passwd root
+$ sudo passwd root
 ```
 
 ### 更改系统默认编辑器
 
 ```
-sudo update-alternatives --config editor
+$ sudo update-alternatives --config editor
 ```
 
 ### 编辑`sudoer`文件
 
 ```
-sudo visudo
+$ sudo visudo
+```
+
+### vim 批量替换
+
+```
+:s/x/y/g # 当前行，或进入visual 模式之后，搜索x替换成y
+:%s/x/y/g # 当前文件
+:100, 102s/x/y/g # 指定行
 ```
 
 ### 安装指定版本
 
 ```
-sudo apt-get install openssh-client=1:5.3p1-3ubuntu3
+$ sudo apt-get install openssh-client=1:5.3p1-3ubuntu3
 ```
 
 ### `ruby`的淘宝镜像
@@ -49,6 +57,7 @@ $ gem install rails
 
 ```
 Ubuntu 12.04 - Precise Pangolin （精准的穿山甲）
+Ubuntu 13.10 - Saucy Salamander(俏皮的蝾螈)
 ```
 
 ```
@@ -81,19 +90,19 @@ Main account Password: vagrant
 #### 1. 安装基本包，`git`支持：
 
 ```
-sudo apt-get -y install git-core
+$ sudo apt-get -y install git-core
 ```
 
 #### 2. 创建管理员组
 
 ```
-sudo groupadd admin
+$ sudo groupadd admin
 ```
 
 #### 3. 将当前登录用户加入`admin`组
 
 ```
-sudo usermod -G admin vagrant
+$ sudo usermod -G admin vagrant
 ```
 
 #### 4. 编辑`sudoers`文件，新增以下内容
@@ -148,31 +157,31 @@ sudo make install
 ```
 
 ```
-sudo gem install chef ruby-shadow -V
+$ sudo gem install chef ruby-shadow -V
 ```
 
 #### 6. 安装`puppet`
 
 ```
-sudo apt-get -y install puppet puppetmaster
+$ sudo apt-get -y install puppet puppetmaster
 ```
 
 #### 7. 安装`openssh-server`
 
 ```
-sudo apt-get -y install openssh-server
+$ sudo apt-get -y install openssh-server
 ```
 
 #### 8. 安装vagrant's public keys
 
 ```
-mkdir ~/.ssh/
-chmod 0755 ~/.ssh
-cd ~/.ssh
-wget http://github.com/mitchellh/vagrant/raw/master/keys/vagrant
-wget http://github.com/mitchellh/vagrant/raw/master/keys/vagrant.pub
-mv vagrant.pub authorized_keys
-chmod 0644 authorized_keys
+$ mkdir ~/.ssh/
+$ chmod 0755 ~/.ssh
+$ cd ~/.ssh
+$ wget http://github.com/mitchellh/vagrant/raw/master/keys/vagrant
+$ wget http://github.com/mitchellh/vagrant/raw/master/keys/vagrant.pub
+$ mv vagrant.pub authorized_keys
+$ chmod 0644 authorized_keys
 ```
 
 #### 9. 安装Virtual Box的增强功能
@@ -180,30 +189,30 @@ chmod 0644 authorized_keys
 ##### 1. 先安装`dkms`和`reboot`
 
 ```
-sudo apt-get -y install linux-headers-$(uname -r) build-essential dkms
-sudo reboot
+$ sudo apt-get -y install linux-headers-$(uname -r) build-essential dkms
+$ sudo reboot
 ```
 
 ##### 2. 重启之后，点击Virtual Box [设备]上的[安装增强功能]，接下来需要mount virtual CD
 
 ```
-sudo apt-get -y install linux-headers-$(uname -r) build-essential
-mkdir /media/cdrom
-mount /dev/cdrom /media/cdrom
-sudo sh /media/cdrom/VBoxLinuxAdditions.run
+$ sudo apt-get -y install linux-headers-$(uname -r) build-essential
+$ mkdir /media/cdrom
+$ mount /dev/cdrom /media/cdrom
+$ sudo sh /media/cdrom/VBoxLinuxAdditions.run
 ```
 
 #### 10. 清空缓存
 
 ```
-sudo apt-get clean
+$ sudo apt-get clean
 ```
 
 
 ### 三、创建vagrant box
 
 ```
-vagrant package --base vagrant-precise32
+$ vagrant package --base vagrant-precise32
 # 最后一个参数为虚拟机的文件名，第一次还以为是需要指定创建的文件名，生成的文件名是package.box
 ```
 
@@ -211,12 +220,27 @@ vagrant package --base vagrant-precise32
 ### 四、使用新建的box
 
 ```
-vagrant box add vagrant-precise32 package.box
-vagrant init vagrant-precise32
-vagrant up
+$ vagrant box add vagrant-precise32 package.box
+$ vagrant init vagrant-precise32
+$ vagrant up
 ```
+
+### 五、常用命令
+
+```
+vagrant halt # 关机
+vagrant destory # 停止当前正在运行的虚拟机并销毁所有创建的资源
+vagrant box remove # 删除相应的box
+vagrant box list # 显示当前已经添加的box列表
+```
+更多：[https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/01.3.md](https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/01.3.md)
 
 ## 遗留的问题
 
-1. 制作的box的大小为594.7Mb，太大了，是否有办法弄小一点
+1. 在vagrant up时，系统会停留在输入用户名界面，这时需要vagrant ssh，之后up才会结束
+2. 制作的box的大小为594.7Mb，太大了，是否有办法弄小一点
 
+## 参考
+[Creating a vagrant base box for ubuntu 12.04 32bit server](https://github.com/fespinoza/checklist_and_guides/wiki/Creating-a-vagrant-base-box-for-ubuntu-12.04-32bit-server)
+
+[https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/01.2.md](https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/01.2.md)
