@@ -242,4 +242,5 @@ vagrant box list # 显示当前已经添加的box列表
 
 ## 参考
 [Creating a vagrant base box for ubuntu 12.04 32bit server](https://github.com/fespinoza/checklist_and_guides/wiki/Creating-a-vagrant-base-box-for-ubuntu-12.04-32bit-server)
+[https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/01.2.md](https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/01.2.md)
 
