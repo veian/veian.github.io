@@ -238,6 +238,8 @@ vagrant box list # 显示当前已经添加的box列表
 ## 遗留的问题
 
 1. 制作的box的大小为594.7Mb，太大了，是否有办法弄小一点
+2. 网络的问题，配置的是`config.vm.network :public_network`,但在window下会出现连接不到外网的情况！
+3. 在虚拟机内新增的公钥和秘钥，在重启机器之后就不见了！可以尝试下在制作虚拟机的时候就生成好公钥和秘钥。
 
 ## 参考
 [Creating a vagrant base box for ubuntu 12.04 32bit server](https://github.com/fespinoza/checklist_and_guides/wiki/Creating-a-vagrant-base-box-for-ubuntu-12.04-32bit-server)
