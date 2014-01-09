@@ -1,6 +1,6 @@
 name: Veian's BLOG
 markdown: redcarpet
-permalink: pretty
+permalink: /:categories/:year/:month/:day/:title
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 auto: true
 pygments: true
@@ -10,6 +10,7 @@ author :
   name : veian
   email : q.787583174@gmail.com
   github : veian
+
 production_url : http://e2024.com
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
