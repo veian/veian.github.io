@@ -10,25 +10,25 @@ tags: [vagrant]
 
 ### 设定/改变/启用`root`密码
 
-```
+``` sh
 $ sudo passwd root
 ```
 
 ### 更改系统默认编辑器
 
-```
+``` sh
 $ sudo update-alternatives --config editor
 ```
 
 ### 编辑`sudoer`文件
 
-```
+``` sh
 $ sudo visudo
 ```
 
 ### vim 批量替换
 
-```
+``` sh
 :s/x/y/g # 当前行，或进入visual 模式之后，搜索x替换成y
 :%s/x/y/g # 当前文件
 :100, 102s/x/y/g # 指定行
@@ -36,14 +36,14 @@ $ sudo visudo
 
 ### 安装指定版本
 
-```
+``` sh
 $ sudo apt-get install openssh-client=1:5.3p1-3ubuntu3
 ```
 
 ### `ruby`的淘宝镜像
 [http://ruby.taobao.org/](http://ruby.taobao.org/)
 
-```
+``` sh
 $ gem sources --remove https://rubygems.org/
 $ gem sources -a http://ruby.taobao.org/
 $ gem sources -l
@@ -77,7 +77,7 @@ deb-src http://mirrors.163.com/ubuntu/ precise-backports main restricted univers
 
 ### 一、使用Orical VM Virtual Box安装服务器版的`ubuntu`，并确保以下几点 ：
 
-```
+``` sh
 Hostname: vagrant
 Domain: vagrantup.com
 Root Password: vagrant
@@ -89,32 +89,32 @@ Main account Password: vagrant
 
 #### 1. 安装基本包，`git`支持：
 
-```
+``` sh
 $ sudo apt-get -y install git-core
 ```
 
 #### 2. 创建管理员组
 
-```
+``` sh
 $ sudo groupadd admin
 ```
 
 #### 3. 将当前登录用户加入`admin`组
 
-```
+``` sh
 $ sudo usermod -G admin vagrant
 ```
 
 #### 4. 编辑`sudoers`文件，新增以下内容
 
-```
+``` sh
 Defaults env_keep="SSH_AUTH_SOCK"
 %admin ALL=NOPASSWD: ALL
 ```
 
 最后看上去像这样：
 
-```
+``` sh
 #
 # This file MUST be edited with the 'visudo' command as root.
 #
@@ -143,7 +143,7 @@ root    ALL=(ALL:ALL) ALL
 
 #### 5. 安装`ruby`，脚本
 
-```
+``` sh
 #!/usr/bin/env bash
 sudo apt-get -y update
 apt-get -y install build-essential zlib1g-dev libssl-dev libreadline6-dev libyaml-dev
@@ -156,25 +156,25 @@ make
 sudo make install
 ```
 
-```
+``` sh
 $ sudo gem install chef ruby-shadow -V
 ```
 
 #### 6. 安装`puppet`
 
-```
+``` sh
 $ sudo apt-get -y install puppet puppetmaster
 ```
 
 #### 7. 安装`openssh-server`
 
-```
+``` sh
 $ sudo apt-get -y install openssh-server
 ```
 
 #### 8. 安装vagrant's public keys
 
-```
+``` sh
 $ mkdir ~/.ssh/
 $ chmod 0755 ~/.ssh
 $ cd ~/.ssh
@@ -188,14 +188,14 @@ $ chmod 0644 authorized_keys
 
 ##### 1. 先安装`dkms`和`reboot`
 
-```
+``` sh
 $ sudo apt-get -y install linux-headers-$(uname -r) build-essential dkms
 $ sudo reboot
 ```
 
 ##### 2. 重启之后，点击Virtual Box [设备]上的[安装增强功能]，接下来需要mount virtual CD
 
-```
+``` sh
 $ sudo apt-get -y install linux-headers-$(uname -r) build-essential
 $ mkdir /media/cdrom
 $ mount /dev/cdrom /media/cdrom
@@ -204,22 +204,22 @@ $ sudo sh /media/cdrom/VBoxLinuxAdditions.run
 
 #### 10. 清空缓存
 
-```
+``` sh
 $ sudo apt-get clean
 ```
 
 
 ### 三、创建vagrant box
 
-```
+``` sh
 $ vagrant package --base vagrant-precise32
-# 最后一个参数为虚拟机的文件名，第一次还以为是需要指定创建的文件名，生成的文件名是package.box
 ```
+最后一个参数为虚拟机的文件名，第一次还以为是需要指定创建的文件名，生成的文件名是package.box
 
 
 ### 四、使用新建的box
 
-```
+``` sh
 $ vagrant box add vagrant-precise32 package.box
 $ vagrant init vagrant-precise32
 $ vagrant up
@@ -227,7 +227,7 @@ $ vagrant up
 
 ### 五、常用命令
 
-```
+``` sh
 vagrant halt # 关机
 vagrant destory # 停止当前正在运行的虚拟机并销毁所有创建的资源
 vagrant box remove # 删除相应的box
