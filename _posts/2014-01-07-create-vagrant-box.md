@@ -6,7 +6,6 @@ description: "在创建Vagrant box时遇到的一些问题"
 categories: tools
 tags: [vagrant]
 ---
-{% include JB/setup %}
 
 ### 设定/改变/启用`root`密码
 

@@ -1,6 +1,6 @@
 name: Veian's BLOG
 markdown: redcarpet
-permalink: /:categories/:year/:month/:day/:title
+permalink: /:year/:month/:day/:title.html
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 auto: true
 pygments: true
@@ -13,25 +13,6 @@ author :
 
 production_url : http://e2024.com
 
-# All Jekyll-Bootstrap specific configurations are namespaced into this hash
-#
-JB :
-  version : 0.2.13
-
-  BASE_PATH : false
-
-  ASSET_PATH : false
-
-  archive_path: /archive.html
-  categories_path : /categories.html
-  tags_path : /tags.html
-
-  comments :
-    provider : disqus
-    disqus :
-      short_name : imaxbin
-   
-  analytics :
-    provider : google 
-    google : 
-        tracking_id : 'UA-123-12'
+archive_path: /archive.html
+categories_path : /categories.html
+tags_path : /tags.html
