@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "ubuntu"
-description: "ubuntu"
+title:  "配置ubuntu开发环境"
+description: "配置ubuntu开发环境"
 categories: tools
 tags: [frontend]
 ---
@@ -37,6 +37,7 @@ $ su - root
 
 `-f` 指定包的文件名
 
+
 `-c` 创建包
 
 `-r` 追加
@@ -67,3 +68,5 @@ $ sudo apt-get install sublime-text
 ```
 
 更多：[http://www.webupd8.org/2011/03/sublime-text-2-ubuntu-ppa.html](http://www.webupd8.org/2011/03/sublime-text-2-ubuntu-ppa.html)
+
+Sublime Text 2 不能输入中文
