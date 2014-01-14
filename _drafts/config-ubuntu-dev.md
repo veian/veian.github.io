@@ -37,7 +37,7 @@ $ su - root
 `-v` 查看
 
 `-z` 调用`gzip`
-`-j` 调用`gzip`
+`-j` 调用`bzip2`
 `-Z` 调用`compress`
 
 ## 安装 Sublime Text 2
