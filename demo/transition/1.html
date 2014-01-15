@@ -1,0 +1,44 @@
+---
+layout: demo
+title:  "transition"
+date: 2014-01-15 17:46:46
+description: "transition"
+categories: example
+tags: [css transition]
+---
+<style>
+  .element{
+    display:block;
+    height:100px;
+    width:100px;
+    background-color:#f00;
+    opacity:0.5;
+    transform:scale(0.95) translate3d(0,100%,0);
+    transition:transform 400ms ease, opacity 400ms ease;
+  }
+
+  .element.active{
+    opacity:1.0;
+    transform:scale(1.0) translate3d(0,0,0);
+  }
+  .element.inactive{
+    opacity:0.5;
+    transform:scale(1) translate3d(0,0,0);
+  }
+</style>
+<a class="element"></a>
+<script>
+var active = function(){  
+}
+
+var inactive = function(){  
+}
+$('.element').on('mouseenter mouseleave', function(e) {
+  if(e.type === 'mouseenter') {
+    $('.element').removeClass('inactive').addClass('active')
+  } else {
+    $('.element').removeClass('active').addClass('inactive')
+  }
+})
+
+</script>
