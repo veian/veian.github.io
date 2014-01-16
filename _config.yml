@@ -1,6 +1,6 @@
 name: Veian's BLOG
 markdown: redcarpet
-permalink: /:year/:month/:day/:title.html
+permalink: /:categories/:year/:month/:day/:title
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "config", "sass"]
 auto: true
 pygments: true
