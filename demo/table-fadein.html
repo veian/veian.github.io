@@ -1,0 +1,66 @@
+---
+layout: demo/main
+title:  "table fadein"
+date: 2014-01-16 17:22:46
+description: "table fadein"
+show: "on"
+categories: demo
+tags: [js useragent]
+---
+<style>
+    table{
+        width:100%;
+        border-collapse:collapse;
+        border:1px solid #bbb;
+    }
+    td{
+        border:1px solid #bbb;
+        line-height:32px;
+        text-align:center;
+    }
+    #tr{
+        display:none;
+        background-color:#f00;
+    }
+    #trigger{
+        float:left;
+        height:80px;
+        padding:0 40px;
+        line-height:79px;
+        background-color:#ebeb0a;
+    }
+</style>
+<table id="table">
+    <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+    </tr>
+    <tr id="tr">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+    </tr>
+</table>
+<a href="javascript:;" id="trigger">show tr and click me</a>
+<script>
+    $(function() {
+        $('#tr').on('click', function(e) {
+            var $t = $(this)
+            console.log($t)
+            $t.fadeOut()
+        })
+        $('#trigger').on('click', function(e) {
+            var $t = $(this)
+            $('#tr').fadeIn()
+        })
+    })
+</script>
