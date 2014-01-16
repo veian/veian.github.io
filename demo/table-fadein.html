@@ -1,12 +1,13 @@
 ---
 layout: demo/main
-title:  "table fadein"
+title:  "table .slideUp()"
 date: 2014-01-16 17:22:46
-description: "table fadein"
+description: "jQuery's slideUp effect can't act on the tr element"
 show: "on"
 categories: demo
 tags: [js useragent]
 ---
+<p>jQuery's slideUp effect can't act on the tr element.</p>
 <style>
     table{
         width:100%;
@@ -19,15 +20,19 @@ tags: [js useragent]
         text-align:center;
     }
     #tr{
-        display:none;
         background-color:#f00;
     }
     #trigger{
-        float:left;
+        display:block;
         height:80px;
+        margin-top:40px;
         padding:0 40px;
         line-height:79px;
-        background-color:#ebeb0a;
+        background-color:#f14382;
+        color:#fff;
+        font-weight:bold;
+        font-size:20px;
+        text-align:center;
     }
 </style>
 <table id="table">
@@ -51,6 +56,14 @@ tags: [js useragent]
     </tr>
 </table>
 <a href="javascript:;" id="trigger">show tr and click me</a>
+<pre>
+    <code>
+        $('#trigger').on('click', function(e) {
+            var $t = $(this)
+            $('#tr').slideUp(1000)
+        })
+    </code>
+</pre>
 <script>
     $(function() {
         $('#tr').on('click', function(e) {
@@ -60,7 +73,7 @@ tags: [js useragent]
         })
         $('#trigger').on('click', function(e) {
             var $t = $(this)
-            $('#tr').fadeIn()
+            $('#tr').slideUp(1000)
         })
     })
 </script>
