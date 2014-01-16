@@ -56,6 +56,4 @@ $ su - root
 
 `-j` 调用`bzip2`
 
-`-j` 调用`gzip`
-
 `-Z` 调用`compress`
