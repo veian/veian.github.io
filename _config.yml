@@ -1,7 +1,7 @@
 name: Veian's BLOG
 markdown: redcarpet
 permalink: /:year/:month/:day/:title.html
-exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "config", "sass"]
 auto: true
 pygments: true
 title : Veian's blog

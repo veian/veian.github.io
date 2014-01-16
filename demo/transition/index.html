@@ -1,11 +1,12 @@
 ---
-layout: demo
+layout: demo/main
 title:  "transition"
 date: 2014-01-15 17:46:46
 description: "transition"
-categories: example
+categories: demo
 tags: [css transition]
 ---
+
 <style>
   .element{
     display:block;
@@ -16,7 +17,7 @@ tags: [css transition]
     transform:scale(0.95) translate3d(0,100%,0);
     transition:transform 400ms ease, opacity 400ms ease;
   }
-
+  
   .element.active{
     opacity:1.0;
     transform:scale(1.0) translate3d(0,0,0);

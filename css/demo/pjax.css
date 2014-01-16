@@ -1,0 +1,16 @@
+/* line 1, ../../sass/demo/pjax.scss */
+* { padding: 0; margin: 0; }
+
+/* line 5, ../../sass/demo/pjax.scss */
+.nav { margin-bottom: 40px; padding: 20px; border-bottom: 4px solid #ebebeb; }
+/* line 10, ../../sass/demo/pjax.scss */
+.nav a:link, .nav a:visited { padding: 0 20px; font-size: 16px; font-weight: bold; color: #f14382; }
+/* line 16, ../../sass/demo/pjax.scss */
+.nav a:hover { color: #666; }
+
+/* line 21, ../../sass/demo/pjax.scss */
+.container { width: 960px; margin: 0 auto; }
+/* line 24, ../../sass/demo/pjax.scss */
+.container h1 { margin-bottom: 20px; text-align: center; }
+/* line 28, ../../sass/demo/pjax.scss */
+.container p { padding-bottom: 12px; line-height: 28px; }
