@@ -5,6 +5,8 @@ date: 2014-01-16 22:46:33
 description: "my personal settings of sublime text."
 category: tools
 tags: [sublime]
+
+develop: false
 ---
 ## install Sublime Text 2
 

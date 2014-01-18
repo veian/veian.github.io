@@ -5,6 +5,8 @@ date: 2014-01-13 22:27:46
 description: "配置ubuntu开发环境"
 categories: tools
 tags: [frontend]
+
+develop: false
 ---
 
 ## 使用到的命令
