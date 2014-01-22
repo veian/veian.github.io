@@ -5,6 +5,8 @@ date: 2014-01-07 22:27:46
 description: "在创建Vagrant box时遇到的一些问题"
 categories: tools
 tags: [vagrant]
+
+develop: false
 ---
 
 ### 设定/改变/启用`root`密码

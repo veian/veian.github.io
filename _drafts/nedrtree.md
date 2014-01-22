@@ -1,3 +1,13 @@
+---
+layout: post
+title:  "NEDRTree"
+description: "NEDRTree"
+categories: note
+tags: [vim]
+
+develop: true
+---
+
 ## NEDRTree
 ``` sh
 ctrl + w + w    光标自动在左右侧窗口切换
