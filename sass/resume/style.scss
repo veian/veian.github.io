@@ -1,0 +1,84 @@
+$default-box-shadow-color: #666;
+$default-box-shadow-blur: 8px;
+@import "compass/css3";
+body{
+	margin:40px 0;
+	text-align:center;
+}
+h1{
+	line-height:42px;
+	text-align:center;
+	font:{
+		size:40px;
+	}
+}
+h2{
+	padding-left:16px;
+	margin:32px 0 20px 0;
+	border-left:4px solid #f14382;
+}
+.container{
+	@include inline-block;
+	padding:48px;
+	@include single-box-shadow;
+}
+.wraper{
+	position:relative;
+	width:800px;
+	height:1132px;
+	text-align:left;
+	.ac{
+		position:absolute;
+		width:40px;
+		height:40px;
+		border:{
+			style:solid;
+			color:#bbb;
+		}
+	}
+	.tl{
+		top:0;
+		left:0;
+		border:{
+			width:0 1px 1px 0;
+		}
+	}
+	.tr{
+		top:0;
+		right:0;
+		border:{
+			width:0 0 1px 1px;
+		}
+	}
+	.bl{
+		bottom:0;
+		left:0;
+		border:{
+			width:1px 1px 0 0;
+		}
+	}
+	.br{
+		bottom:0;
+		right:0;
+		border:{
+			width:1px 0 0 1px;
+		}
+	}
+}
+.content{
+	padding:0 42px;
+}
+table{
+	width:100%;
+	tr{
+		
+	}
+	td{
+		&:nth-child(odd){
+			text-align:right;
+		}
+		&:nth-child(even){
+			text-align:left;
+		}
+	}
+}
