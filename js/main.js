@@ -1,6 +1,9 @@
 var $currentpage = null, $lastpage = null;
 
 $(function (){
+  $('.wd-e-story').on('tap click',function (e){
+    togglepop($('#wd-story'))
+  })
   $('.wd-e-process').on('tap click',function (e){
     togglepop($('#wd-process'))
   })
