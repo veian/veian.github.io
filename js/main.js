@@ -1,4 +1,5 @@
-var $currentpage = null, $lastpage = null;
+var $currentpage = null,
+    WW = $(window).width();
 
 $(function (){
   $('.wd-e-story').on('tap click',function (e){
@@ -17,15 +18,15 @@ $(function (){
   })
 
   $('.wd-p-back,.wd-p-close').on('tap click',function (){
-    var $dshow = $lastpage || $('#wd-cont-wrap,#myswipe');
+    var $dshow = $('#wd-cont-wrap,#myswipe');
     togglepop($dshow)
   })
 
 
   // 幻灯播放
   var strswipe = ''
-  for( var i=0; i<4; i++ ){
-    strswipe += '<div><img src="images/slide_'+i+'.jpg" data-title="照片"/></div>'
+  for( var i=0; i<16; i++ ){
+    strswipe += '<div><img src="images/slide_'+i+'.jpg" data-title="照片" onload="modpos(this)"/></div>'
   }
   $('#myswipe .swipe-wrap').html(strswipe)
 
@@ -42,11 +43,29 @@ $(function (){
 })
 
 
+// 修改幻灯图片的位置
+function modpos(img){
+  var $t = $(img),
+      ph = 400,
+      w = img.width,
+      h = img.height,
+      pw = 400*w/h;
+
+  if( pw > WW ){
+    $t.css({
+      "top" : 0,
+      "left" : -(pw-WW)/2
+    })
+  }
+}
+
 function togglepop($dshow,$dhide){
   var title = $dshow.data('title') || '储曼曼 & 刘飞'
   $dhide = $dhide || $currentpage || $('#wd-cont-wrap,#myswipe');
 
-  if( $dshow.selector == $dhide.selector ) return;
+  if( $dshow.selector == $dhide.selector ){
+    return;
+  }
   $('#wd-content').append($dshow);
   $dshow.css({
     "position" : "relative",
@@ -67,8 +86,4 @@ function togglepop($dshow,$dhide){
   document.documentElement.scrollTop = 0;
 
   $currentpage = $dshow;
-
-  if( $lastpage && $currentpage && $lastpage.selector != $currentpage.selector ){
-    $lastpage = $dhide;
-  }
 }
