@@ -1,0 +1,17 @@
+---
+layout: default
+title:  "demo index"
+date: 2014-01-16 14:41:46
+description: "demo index"
+show: "off"
+categories: demo
+tags: [js useragent]
+---
+
+<ul>
+    {% for node in site.pages %}
+    {% if node.categories == 'demo' and node.show == 'on' %}
+        <li><a href="{{ node.url }}">{{ node.date | date_to_string }} - {{ node.title }}</a></li>
+    {% endif %}
+    {% endfor %}
+</ul>
