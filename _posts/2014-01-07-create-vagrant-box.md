@@ -27,6 +27,13 @@ $ sudo update-alternatives --config editor
 $ sudo visudo
 ```
 
+### 安装 nodejs
+
+```
+sudo apt-get install build-essential //gcc
+sudo apt-get install libssl-dev //ssl
+```
+
 ### vim 批量替换
 
 ``` sh
