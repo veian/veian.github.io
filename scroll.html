@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script>
+var iscale = 1 / window.devicePixelRatio;
+document.write('<meta name="viewport" content="width=device-width, initial-scale='+ iscale +', minimum-scale='+ iscale +', maximum-scale='+ iscale +', user-scalable=no" ,minimal-ui >');
+var iWidth = document.documentElement.clientWidth;
+iWidth = iWidth > 1200 ? 1200 : iWidth;
+document.documentElement.style.fontSize = iWidth / 16 + 'px';
+</script>
+<style>
+*{padding: 0;margin: 0;}
+ul{list-style: none;}
+html, body{height: 100%;  font:14px/1.5 Tahoma,Arial,Roboto,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC",sans-self;}
+body{background-color: #e3e3e3;}
+.main{width: 100%;height: 100%;position: relative;margin: 0 auto;}
+.title{width: 100%;height: 2rem;line-height: 2rem;text-align: center;font-size: 1rem;background:rgba(41,171,226,0.6);color: #fff;position: relative;z-index: 9;}
+
+.cont{position: absolute;top: 2rem;left: 0;width: 100%;font-size: 1.5rem;color: #333;}
+.cont ul{width: 100%;position: absolute;top: 0;left: 0;transform:translate3d(0,0,0);}
+
+.cont li{width: 100%;height: 2rem;line-height: 2rem;background:rgba(26,26,26,0.6);box-sizing:border-box;border-bottom: 1px solid #999;font-size: .7rem;padding-left: 1rem;  overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;}
+
+.cont li.active{border-left: 0.4rem solid #29abe2;color: #fff;}
+
+.footer{width: 100%;height: 2rem;line-height: 2rem;text-align: center;position: absolute;bottom: 0;left: 0;background-color: #203D4D;font-size: 1rem;color: #fff;}
+
+#debug{position: fixed;height: 2rem;line-height: 2rem;font-size: .6rem;text-align: center;background-color: rgba(255,255,255, 0.6);width: 100%;left: 0;bottom: 2rem;}
+</style>
+<title>Document</title>
+<script>
+function $(id){
+	return document.getElementById(id);
+}
+
+function bindEvent(obj, ev, fn){obj.attachEvent?obj.attachEvent('on'+ev, fn):obj.addEventListener(ev, fn, false);}
+function unbindEvent(obj, ev, fn){obj.detachEvent?obj.detachEvent('on'+ev, fn):obj.removeEventListener(ev, fn, false);}
+
+//ajax、表单之类的
+function json2url(json)
+{
+	var a=[];
+	for(var i in json)
+	{
+		var v=json[i]+'';
+		v=v.replace(/\n/g, '<br/>');
+		v=encodeURIComponent(v);
+		a.push(i+'='+v);
+	}
+	return a.join('&');
+}
+
+function ajax(url, opt)
+{
+	opt			=opt||{};
+	opt.data	=opt.data||{};
+	opt.data.t	=opt.data.t||new Date().getTime();
+	opt.method	=opt.method||'get';
+	
+	var oAjax=window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+	
+	if(opt.method=='post')
+	{
+		oAjax.open('POST', url, true);
+		oAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		try{
+			oAjax.send(opt.data?json2url(opt.data):null);
+		}catch(e){}
+	}
+	else
+	{
+		url+='?'+json2url(opt.data);
+		oAjax.open('GET', url, true);
+		try{
+			oAjax.send();
+		}catch(e){}
+	}
+	
+	oAjax.onreadystatechange=function ()
+	{
+		if(oAjax.readyState==4)
+		{
+			if(oAjax.status==200)
+			{
+				opt.fnSucc && opt.fnSucc(oAjax.responseText);
+			}
+			else
+			{
+				opt.fnFaild && opt.fnFaild(oAjax.status);
+			}
+		}
+	};
+}
+
+bindEvent(document,'touchmove', function(e){
+	e.preventDefault();
+});
+
+</script>
+</head>
+<body>
+<div id="main" class="main">
+	<div id="title" class="title">这是标题</div>
+	<div id="cont" class="cont">
+		<ul class="list" id="list"></ul>
+	</div>
+	<div id="footer" class="footer">这是脚注</div>
+</div>
+<div id="debug"></div>
+<script>
+
+var viewWidth = document.documentElement.clientWidth, viewHeight = document.documentElement.clientHeight;
+var touchstart = 'touchstart', touchmove = 'touchmove', touchend = 'touchend';
+
+void function(){
+	if( 'ontouchstart' in window ){
+		
+	}else{
+		touchstart = 'mousedown';
+		touchmove = 'mousemove';
+		touchend = 'mouseup';
+	}
+}();
+
+var $main = $('main'), $cont = $('cont'), $list = $('list'), $title = $('title'), $footer = $('footer');
+
+$cont.style.height = viewHeight - $title.offsetHeight - $footer.offsetHeight + 'px';
+
+var musicList = function(){
+	
+	var arr = [];
+	var downY = 0, prevY = 0, downTop = 0;
+	var totalNum = 0;
+	
+	var onoff1 = true, onoff2 = true;
+	
+	var bTop = false, bBottom = false;
+	var speed = 0;
+	
+	var timer;
+	
+	$list.style.webkitTransform = 'translate3d(0px, 0px, 0px)';
+	var regTransform = /,\s*(-?\d+\.?\d*)px\s*,/g;
+	
+	var parentHeight, childHeight;
+	
+	// 取数据
+	void function(){
+		
+		var obj = {
+            "count": 60,
+            "result": [
+                "PID-10040, 韩国SNP钻石美白提亮安瓶精华面膜, 2015/12/13 08:20:53, Spring Leaf, 100 ~ 200, 1300",
+                "PID-10041, 日本高丝KOSE 面膜 30片盒装 两款可选, 2015/12/13 08:20:53, Spring Leaf, 100 ~ 200, 1300",
+                "PID-10042, 韩国Elizavecca小黑猪碳酸氧气泡泡面膜泥, 2015/12/13 08:20:53, Spring Leaf, 100 ~ 200, 1300",
+                "PID-10043, 日本SPC PuRu 高浓度玻尿酸保湿修护面膜, 2015/12/13 08:20:53, Spring Leaf, 100 ~ 200, 1300",
+                "PID-10044, 日本SPC 富勒烯弹力面膜, 2015/12/13 08:20:53, Spring Leaf, 100 ~ 200, 1300",
+                "PID-10045, 日本SPC Placenta胎盘素面膜, 2015/12/13 08:20:53, Spring Leaf, 100 ~ 200, 1300",
+                "PID-10046, school鸡蛋嫩滑保湿补水面膜, 2015/12/13 08:20:53, Spring Leaf, 100 ~ 200, 1300",
+                "PID-10047, 德国Aptamil爱他美白金版pre段奶粉, 2015/12/13 08:20:53, Spring Leaf, 100 ~ 200, 1300",
+                "PID-10048, 韩国AHC第三代眼霜, 2015/12/13 08:20:53, Spring Leaf, 100 ~ 200, 1300",
+                "PID-10049, 英国Boots博资小黄瓜眼胶, 2015/12/13 08:20:53, Spring Leaf, 100 ~ 200, 1300",
+                "PID-10050, 皙俪思CLIV臻致透明质酸保湿精华素",
+                "PID-10051, 日本LOSHI马油",
+                "PID-10052, SkinCeuticals杜克修丽可臻薄",
+                "PID-10053, SkinCeuticals杜克修丽可Physical Eye UV Defense SPF",
+                "PID-10054, SkinCeuticals杜克修丽可Blemish+Age Defense果酸焕活复颜精华液",
+                "PID-10055, 法国Eau Precieuse控油祛痘珍贵水375ML",
+                "PID-10056, 日本 资生堂 MOILIP修复润唇膏8g 护唇膏 滋润保湿",
+                "PID-10057, 韩国伊思it's skin 水果洗面奶",
+                "PID-10058, 韩国兰芝Laneige补水洗面奶",
+                "PID-10059, 韩国悦诗风吟innisfree绿茶精萃保湿护手霜"
+            ]
+        };
+        totalNum = obj.count;
+        
+        var aRes = obj.result;
+        var oFrag = document.createDocumentFragment();
+        for( var i = 0; i < aRes.length; i ++ ){
+            var newLi = document.createElement('li');
+            newLi.innerHTML = aRes[i];
+            oFrag.appendChild(newLi);
+        }
+        
+        $list.appendChild(oFrag);
+        
+        moveScroll();
+		
+	}();
+	
+	function moveScroll(){
+		
+		bindEvent($list, touchstart, function(e){
+			
+			if( !needScroll ){
+				return false;
+			}
+						
+			var touch = e.changedTouches ? e.changedTouches[0] : e;
+			var me = this;
+			
+			downY = touch.pageY;
+			prevY = touch.pageY;
+			regTransform.test($list.style.webkitTransform);
+			downTop = (RegExp.$1 - 0) ;
+			
+			
+			onoff1 = true;
+			onoff2 = true;
+			
+			parentHeight = $cont.offsetHeight;
+			childHeight = $list.offsetHeight;
+			
+			bindEvent( document, 'touchmove', TouchMove );
+			
+			bindEvent(document, 'touchend', TouchEnd );
+			
+			e.preventDefault();
+			
+		} );
+			
+	}
+	
+	function TouchMove(e){
+				
+		var touch = e.changedTouches ? e.changedTouches[0] : e;
+		
+		regTransform.test($list.style.webkitTransform);
+		var iTop = (RegExp.$1 - 0);
+						
+		speed = touch.pageY - prevY;
+				
+		/*
+		if( iTop >= 0 ){ // 上方
+			if( onoff1 ){
+				onoff1 = false;
+				downY = touch.pageY;
+			}
+			
+			$list.style.webkitTransform = 'translate3d(0px, '+ ((touch.pageY - downY) / 3) +'px, 0px)';
+		}else if( iTop <= childHeight - parentHeight ){
+			
+			if( onoff2 ){
+				onoff2 = false;
+				downY = touch.pageY;
+			}
+			
+			$list.style.webkitTransform = 'translate3d(0px, '+ ((touch.pageY - downY) / 3 + ( parentHeight - childHeight ) ) +'px, 0px)';
+			
+		}else{
+			$list.style.webkitTransform = 'translate3d(0px, '+ ((touch.pageY - downY + downTop) / 1) +'px, 0px)';
+		}*/
+		
+		if( iTop >= 0 ){ // 上方
+			if( onoff1 ){
+				onoff1 = false;
+				downY = touch.pageY;
+			}
+			
+			$list.style.webkitTransform = 'translate3d(0px, '+ ((touch.pageY - downY) / 3) +'px, 0px)';
+		}else{
+			$list.style.webkitTransform = 'translate3d(0px, '+ ((touch.pageY - downY + downTop) / 1) +'px, 0px)';
+		}
+		
+		prevY = touch.pageY;
+		
+		debug.innerHTML = $list.style.webkitTransform + ' | ' + iTop;
+		
+	}
+	
+	function TouchEnd(e){
+		unbindEvent(document, 'touchmove', TouchMove );
+		unbindEvent(document, 'touchend', TouchEnd );
+		
+		clearInterval( timer );
+		timer = setInterval( function(){
+			
+			regTransform.test($list.style.webkitTransform);
+			var iTop = (RegExp.$1 - 0);
+						
+			if( iTop > 0 || iTop < parentHeight - childHeight || Math.abs(speed) <= 1 ){
+				clearInterval(timer);
+				
+				if( iTop >= 0 ){
+
+					$list.style.transition = '.2s';
+					$list.style.webkitTransform = 'translate3d(0px, 0px, 0px)';
+				}
+			}
+			
+		}, 17 );
+	}
+	
+	bindEvent($list, 'transitionend', function(){
+		$list.style.transition = 'none';
+	});
+	
+	function needScroll(){
+		var parentHeight = $cont.offsetHeight;
+		var childHeight = $list.offsetHeight;
+		
+		if( parentHeight >= childHeight ){
+			return false;
+		}
+		
+		return true;
+	}
+	
+}();
+
+
+</script>
+</body>
+</html>
