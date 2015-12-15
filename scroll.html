@@ -280,6 +280,7 @@ var musicList = function(){
 		clearInterval( timer );
 		timer = setInterval( function(){
 			
+            var regTransform = /,\s*(-?\d+\.?\d*)px\s*,/g;
 			regTransform.test($list.style.webkitTransform);
 			var iTop = (RegExp.$1 - 0);
 						
