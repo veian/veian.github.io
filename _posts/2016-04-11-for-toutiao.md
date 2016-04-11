@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "在创建Vagrant box时遇到的一些问题"
-date: 2014-01-07 22:27:46
-description: "在创建Vagrant box时遇到的一些问题"
+title:  "开通头条号"
+date: 2016-04-11 17:29:26
+description: "开通头条号"
 categories: tools
-tags: [vagrant]
+tags: []
 
 develop: false
 ---
