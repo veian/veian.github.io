@@ -4,7 +4,7 @@ title:  "开通头条号"
 date: 2016-04-11 17:29:26
 description: "开通头条号"
 categories: tools
-tags: []
+tags: [tools]
 
 develop: false
 ---
